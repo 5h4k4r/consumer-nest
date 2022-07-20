@@ -1,0 +1,19 @@
+services:
+  rabbit-mq:
+    image: 5h4k4r/producer-consumer-rmq:v1
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+  producer:
+    image: 5h4k4r/producer-nest:v1
+    ports:
+      - 3000:3000
+    depends_on:
+      - rabbit-mq
+  consumer:
+    image: 5h4k4r/consumer-nest:v1
+    depends_on:
+      - rabbit-mq
+      - producer
+  

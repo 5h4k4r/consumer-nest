@@ -6,7 +6,7 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
     transport: Transport.RMQ,
     options: {
-      urls: ['amqp://guest:guest@localhost:5672/new-host'],
+      urls: ['amqp://john123:123456@localhost:5672/demo-vhost'],
       queue: 'producer-consumer',
       // false = manual acknowledgement; true = automatic acknowledgment
       noAck: false,
