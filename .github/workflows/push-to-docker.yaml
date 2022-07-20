@@ -18,6 +18,10 @@ jobs:
         run: |
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       - name: Build the docker image
-        run: docker build . --file Dockerfile -t 5h4k4r/consumer-nest:v1
+        run: |
+          docker build . --file Dockerfile -t 5h4k4r/consumer-nest:v1
+          docker build ./rmq --file ./rmq/Dockerfile -t 5h4k4r/producer-consumer-rmq:v1
       - name: Push to Docker
-        run: docker push ${{ secrets.DOCKER_USER }}/consumer-nest:v1
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/consumer-nest:v1
+          docker push ${{ secrets.DOCKER_USER }}/producer-consumer-rmq:v1
