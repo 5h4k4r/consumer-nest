@@ -3,7 +3,7 @@ import { Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  setTimeout(() => {
+  setTimeout(async () => {
     const app = await NestFactory.createMicroservice(AppModule, {
       transport: Transport.RMQ,
       options: {
@@ -16,8 +16,7 @@ async function bootstrap() {
         durable: false,
       },
     });
-
     await app.listen();
-
   }, 3000);
-  bootstrap();
+}
+bootstrap();
